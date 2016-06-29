@@ -1,0 +1,27 @@
+group 'com.memoizrlabs'
+version '0.1'
+
+group 'memoizrlabs'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.2-1"
+    }
+}
+
+apply plugin: 'kotlin'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.2-1"
+    testCompile 'junit:junit:4.12'
+    testCompile "uk.co.datumedge:hamcrest-json:0.2"
+    testCompile 'org.hamcrest:java-hamcrest:2.0.0.0'
+}
+
+repositories {
+    jcenter()
+}
