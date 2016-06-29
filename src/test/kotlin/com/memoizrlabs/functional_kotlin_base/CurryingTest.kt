@@ -23,7 +23,8 @@ class CurryingTest {
 
     @Test
     fun curriesFunctions() {
-        val tenPlusAdd = CurryingTest::testAdd.invoke(this).invoke(10)
+        val add = CurryingTest::testAdd.invoke(this)
+        val tenPlusAdd = add(10)
         val twentyPlusAdd = tenPlusAdd(10)
         val thirtyPlusAdd = twentyPlusAdd(10)
         val fortyPlusAdd = thirtyPlusAdd(10)
