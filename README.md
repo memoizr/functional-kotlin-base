@@ -67,6 +67,19 @@ fun composesTwoFunctionsRightToLeft() {
 }
 ```
 
+###Head and Tail
+Another bit of functionality you'd expect from a functional language is decent syntax for getting the head and tail of a list (car and cdr for the schemers). You can do this by using the extension properties "head" and "tail".
+```
+    @Test
+    fun returnsHeadOfList() {
+        Assert.assertEquals(listOf(1,2,3,4,5).head, 1)
+    }
+
+    @Test
+    fun returnsTailOfList() {
+        Assert.assertEquals(listOf(1,2,3,4,5).tail, listOf(2,3,4,5))
+    }
+```
 That's it!
 
 ### License
