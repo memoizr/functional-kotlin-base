@@ -33,7 +33,7 @@ class `Uncurrying test` {
     }
 
     @Test
-    fun `Curres partial functions of mixed types`() {
+    fun `Curries partial functions of mixed types`() {
         assertEquals(15.0f, addFiveNumbers(1, 2, 3, 4.0f, 5))
     }
 }
