@@ -7,7 +7,7 @@ class CurryingTest {
     val add = { a: Int, b: Int, c: Int, d: Int, e: Int -> a + b + c + d + e}
 
     @Test
-    fun curriesValueFunctions() {
+    fun `Curries value functions`() {
         val tenPlusAdd = add(10)
         val twentyPlusAdd = tenPlusAdd(10)
         val thirtyPlusAdd = twentyPlusAdd(10)
@@ -17,12 +17,12 @@ class CurryingTest {
     }
 
     @Test
-    fun curriesValueFunctionsOneByOne() {
+    fun `Curries value functions one by one`() {
         assertEquals(add(1)(1)(1)(1)(1), 5)
     }
 
     @Test
-    fun curriesFunctions() {
+    fun `Curries methods`() {
         val add = CurryingTest::testAdd.invoke(this)
         val tenPlusAdd = add(10)
         val twentyPlusAdd = tenPlusAdd(10)
