@@ -9,7 +9,7 @@ val add = { a: Int, b: Int, c: Int, d: Int, e: Int -> a + b + c + d + e}
 These parameters can now be applied one by one. The result of partial application is a partial function that takes a smaller number of parameters:
 ```
 @Test
-fun curriesValueFunctions() {
+fun `Curries value functions`() {
     val tenPlusAdd = add(10)
     val twentyPlusAdd = tenPlusAdd(10)
     val thirtyPlusAdd = twentyPlusAdd(10)
@@ -22,7 +22,7 @@ fun curriesValueFunctions() {
 Or alternatively:
 ```
 @Test
-fun curriesValueFunctionsOneByOne() {
+fun `Curries value functions one by one`() {
     assertEquals(add(1)(1)(1)(1)(1), 5)
 }
 ```
@@ -31,7 +31,7 @@ This also works with methods (as long as they're not generic), but you have to f
 ```
 class CurryingTest {
     @Test
-    fun curriesFunctions() {
+    fun `Curries functions`() {
         val add = CurryingTest::testAdd.invoke(this)
         val tenPlusAdd = add(10)
         val twentyPlusAdd = tenPlusAdd(10)
@@ -44,11 +44,26 @@ class CurryingTest {
     fun testAdd(a: Int, b: Int, c: Int, d: Int, e: Int) = a + b + c + d + e
 }
 ```
+
+###Uncurrying
+If you have a curried function you can uncurry it and call it as if it took however many parameters it needs:
+
+```
+    val addFiveNumbers = { a: Int -> { b: Int -> { c: Int -> { d: Float -> { e: Int ->
+                        a + b + c + d + e
+                    }}}}}
+
+    @Test
+    fun `Curries partial functions of mixed types`() {
+        assertEquals(15.0f, addFiveNumbers(1, 2, 3, 4.0f, 5))
+    }
+```
+
 ###Composition
 You can apply one function, and then pass the result as the input to another function (left to right):
 ```
 @Test
-fun composesTwoFunctionsLeftToRight() {
+fun `andThen composes two functions left to right`() {
     val addTenThenMultiplyByTen = { x: Int -> x + 10 } andThen { it * 10 }
 
     assertEquals(addTenThenMultiplyByTen(5), (5 + 10) * 10)
@@ -59,7 +74,7 @@ fun composesTwoFunctionsLeftToRight() {
 or you can do the same, but right to left:
 ```
 @Test
-fun composesTwoFunctionsRightToLeft() {
+fun `compose composes two functions right to left`() {
     val multiplyByTenThenAddTen = { x: Int -> x + 10 } compose { x: Int -> x * 10 } compose { x: Int -> x + 3 }
 
     assertEquals(multiplyByTenThenAddTen(5), (5 * 10) + 10)
@@ -71,12 +86,12 @@ fun composesTwoFunctionsRightToLeft() {
 Another bit of functionality you'd expect from a functional language is decent syntax for getting the head and tail of a list (car and cdr for the schemers). You can do this by using the extension properties "head" and "tail".
 ```
 @Test
-fun returnsHeadOfList() {
+fun `head returns the first element in a list`() {
     assertEquals(listOf(1,2,3,4,5).head, 1)
 }
 
 @Test
-fun returnsTailOfList() {
+fun `tail returns the last element in a list`() {
     assertEquals(listOf(1,2,3,4,5).tail, listOf(2,3,4,5))
 }
 ```
