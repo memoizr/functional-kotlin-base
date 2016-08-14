@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/memoizr/functional-kotlin-base.svg?branch=master)](https://travis-ci.org/memoizr/functional-kotlin-base)
 ### Functional Kotlin
 This is a small library that add support for currying and function composition in Kotlin. It is very important to be able to compose functions and curry them if one wants to adopt a more functional style.
 
